@@ -1,0 +1,65 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "as4"
+version = "0.1.0"
+description = "Build, parse and answer AS4 messages, with the Peppol AS4 profile built in"
+readme = "README.md"
+requires-python = ">=3.11"
+keywords = ["as4", "ebms", "peppol", "edelivery", "einvoicing"]
+license = "Apache-2.0"
+license-files = ["LICENSE.txt"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Communications",
+    "Topic :: Office/Business :: Financial",
+]
+dependencies = [
+    "lxml>=5.3,<6",
+    "pydantic>=2.11,<3",
+    "cryptography>=45,<47",
+    "urllib3>=2.5,<3",
+]
+
+[project.urls]
+Homepage = "https://github.com/dbkosky/as4"
+Source = "https://github.com/dbkosky/as4"
+Issues = "https://github.com/dbkosky/as4/issues"
+
+[project.optional-dependencies]
+test = [
+    "black==25.1.0",
+    "mypy==1.15.0",
+    "pytest>=7",
+    "freezegun==1.5.5",
+    "lxml-stubs==0.5.1",
+    "flake8==7.0.0",
+    "Flake8-pyproject==1.2.4",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["as4*"]
+
+[tool.setuptools.package-data]
+"as4.resources.schemas.vendor.sbdh" = ["*.xsd"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+
+[tool.black]
+line-length = 119
+
+[tool.mypy]
+plugins = ["pydantic.mypy"]
+
+
+[tool.flake8]
+exclude = "dev"
+max-line-length = 119
