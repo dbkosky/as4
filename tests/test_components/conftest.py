@@ -72,24 +72,24 @@ SECURITY_TOKEN_REFERENCE_ID = "STR-00000000-0000-4000-8000-000000000009"
 SIGNATURE_KEY_INFO_ID = "KI-00000000-0000-4000-8000-000000000008"
 
 CIPHER_VALUE_B64 = (
-    "RW5UuMmPjerNzCzwyt6Vg/msLIsJs8vvOLY3qoxAjUGF5LQB/pSC7sACxVge5M/2S0eGCHlG"
-    "I27eYQOL+UokgKt9SIfl+/KR7ojKJ3aDbDUbZpLkgHYaPUmP6R4fN81EfeCr1WjRPUiYqRgH"
-    "iIUARS/g81Q3qgdCD3bGjBQNB/7D6BuLt/hFtEMl7uqSBH1ZO44uFSN/H+p+NKYZcymddWdX"
-    "QRfEWaVuZ/Yold38ULFO0YIZXrVmW2rMGWBJCS/6KU5eVhmwgdbXwoYOM9OotD32hwEjf7jn"
-    "CP3glrLfhruOR5A1u1Jkr8Qszl4/nAdsKKbKJV7WPU0UMmTxo8C5nw=="
+    "iKhgWhJoVBvJ6iYsx37wM9LibbBvtgBboOZlFCqLCjSrh0AcW7WUzj502JusktksjqF88jOc"
+    "uy7QcGPgoEyHCveCQrdt/gj2xP4VpXUeMNGKETxHXk9NHMg5Zu1UNCwM8WX4zd1O3+Cye5cz"
+    "gIwTWl/zG3F0/zWsEH3mOUnHCeSqoaY9WvLXfPTcftjZQ3TPMGAbrHzk+VM8783Bt2YRc2pB"
+    "Q/r7hKrI0HU9p7hU/Gs7cb8dFho7ivYTCeOnikQhdChm1F+aZecZ22zs9dIozciSnYLpHzX4"
+    "5pfCyYKUVDQcj5uUiN/orMLp8x47Ue0LDN3XsEQ2tjLCgFTDgl7m0A=="
 )
 
 SIGNATURE_VALUE_B64 = (
-    "GCtFAD/Ah+5Me7QxAxUHLDcqqbjMYQFNMah7FujQdHJFFol4QrF5qmMl0Ezmp4aSOvUoPDjo"
-    "BGWnMYacQrslvnzzfS/MOrLN/tRBz/TDFJuPbaJMg33y1cYPKk6Faua0UQRaDC7dy4At7Vly"
-    "+W+5afSxyf/T2L8OwienP5VLFjGmwQgoOwqV4CENngcjbQ2ZDsgimNWMNpCAL0Hglgvn3VVI"
-    "nZK7W1o8ytkxh268QC8XTCQ5BTd4labXj2Ehv1Yi5zXUM7a9BHeoJZ1Aq8KIKTjYlGm/o7dL"
-    "EXg7l/kNAR212PKKMM0ezRr/gkNxzKJemZIewqlxm+eVQ9Zvt/0HEg=="
+    "CbCrx8Px3UxaUlvcUgZwxuU+/faTkG3fTTvXNTENUowqvcbOwvYiT0TJZPqE9No0u4Fpb5lR"
+    "2NQgAALOXKhK8lI97E8Q7UbD7mb40xHj1fp/wQQfWtvM+pzFvNhrxgEq/U+L6lZEJIq37bFv"
+    "9/48AzUQRC1UcyZDnuZVTnqUqcuNvQ4lLr3O2CchqFM/WW9wZMgCB1lgjZ8AlgQMThtrfYjG"
+    "EEyHXZb9iA09XNk67m6bg2VSBRc9LjMIvsAOJL9v8dL5unpeoHocaZtnuVckZt5NETXR8adt"
+    "gypW1ATLzjl+pAKGeamEamyzreIvKy3KWQ/YU+o7j4PIRxSHUGY45w=="
 )
-DIGEST_VALUE_B64 = "zOz+HWtlAYLqqhZTAWNpOzjcwoarkKls01mRLzvDCU0="
+DIGEST_VALUE_B64 = "uj2Ry++nML3iJIt/ief4geidT2AFu+7EQhqP4bt2iU0="
 BODY_ID = "00000000-0000-4000-8000-00000000000d"
 BODY_DIGEST_VALUE_B64 = "zbyFEqI/g4v4pjaOzePGKpDJS00rkQke3N1HoC4NyKc="
-ATTACHMENT_DIGEST_VALUE_B64 = "D8c8mxvbsl+VMliBlkWJ2sFtxERD/pZCx8NZOc38Bzc="
+ATTACHMENT_DIGEST_VALUE_B64 = "VKsT8tj9KhUk9g0XQUTzDKMj+9uCczOclTjbosG51DI="
 MESSAGE_TIMESTAMP = test_soap_envelope_element.xpath(
     "//eb:UserMessage/eb:MessageInfo/eb:Timestamp/text()", namespaces=DEFAULT_NAMESPACE_MAP
 )[0]
@@ -574,11 +574,11 @@ def example_party_info_object():
     """Example party info object"""
     return PartyInfo(
         party_from=PartyFrom(
-            party_id=PartyId(value="0208:9999999999", type_value="urn:fdc:peppol.eu:2017:identifiers:ap"),
+            party_id=PartyId(value="9932:9999999999", type_value="urn:fdc:peppol.eu:2017:identifiers:ap"),
             role=Role(value="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/initiator"),
         ),
         party_to=PartyTo(
-            party_id=PartyId(value="0208:1111111111", type_value="urn:fdc:peppol.eu:2017:identifiers:ap"),
+            party_id=PartyId(value="9932:1111111111", type_value="urn:fdc:peppol.eu:2017:identifiers:ap"),
             role=Role(value="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/responder"),
         ),
     )

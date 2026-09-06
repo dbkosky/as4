@@ -9,7 +9,7 @@ from as4.core.trust import UntrustedSignerError, certificate_chain
 from as4.models.ebms.user_message import PartyFrom, PartyId, Role
 
 NOW = datetime.now(UTC)
-PARTY_FROM = PartyFrom(party_id=PartyId(value="0208:1111111111"), role=Role(value="sender"))
+PARTY_FROM = PartyFrom(party_id=PartyId(value="9932:1111111111"), role=Role(value="sender"))
 
 
 def issue(
