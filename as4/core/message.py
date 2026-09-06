@@ -112,8 +112,8 @@ class AS4Message(BaseModel):
             attachments=list(self.mime_attachments.items()),
         )
 
-    def get_http_headers(self, boundary: str) -> dict[str, str]:
-        return MIMEHandler.build_request_headers(boundary=boundary)
+    def get_http_headers(self, boundary: str, user_agent: str | None = None) -> dict[str, str]:
+        return MIMEHandler.build_request_headers(boundary=boundary, user_agent=user_agent)
 
     @classmethod
     def pre_validate(
