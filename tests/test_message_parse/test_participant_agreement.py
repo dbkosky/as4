@@ -15,8 +15,8 @@ from as4.profiles.peppol.message import PeppolAS4Message
 from as4.profiles.peppol.profile import PeppolAS4Profile
 from tests.assets.test_credentials import test_sender
 
-SENT_BY = "0208:2222222222"
-SENT_TO = "0208:3333333333"
+SENT_BY = "9932:2222222222"
+SENT_TO = "9932:3333333333"
 
 
 @pytest.fixture
@@ -53,11 +53,11 @@ def test_a_message_whose_halves_agree_is_accepted(parsed):
 
 
 def test_an_sbdh_sender_contradicting_the_original_sender_property_is_refused(parsed):
-    assert "originalSender" in refusal(parsed, identifier("0208:9999999999"), identifier(SENT_TO))
+    assert "originalSender" in refusal(parsed, identifier("9932:9999999999"), identifier(SENT_TO))
 
 
 def test_an_sbdh_receiver_contradicting_the_final_recipient_property_is_refused(parsed):
-    assert "finalRecipient" in refusal(parsed, identifier(SENT_BY), identifier("0208:9999999999"))
+    assert "finalRecipient" in refusal(parsed, identifier(SENT_BY), identifier("9932:9999999999"))
 
 
 def test_an_sbdh_authority_contradicting_the_property_type_is_refused(parsed):
@@ -104,7 +104,7 @@ def sbdh_naming(monkeypatch):
 
 
 def contradicting(local_party, remote_party, send, sbdh_naming):
-    sbdh_naming("0208:9999999999", "0208:3333333333")
+    sbdh_naming("9932:9999999999", "9932:3333333333")
     return send(local_party, remote_party)
 
 
@@ -151,4 +151,4 @@ def test_the_check_can_be_switched_off(local_party, remote_party, receiving_part
     )
 
     assert receiving.successful, receiving.error
-    assert receiving.message.sender == "0208:9999999999"
+    assert receiving.message.sender == "9932:9999999999"

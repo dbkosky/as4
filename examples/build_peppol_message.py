@@ -24,8 +24,8 @@ message = build_peppol_message(
     payload=b'<Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"/>',
     local_party=local_party,
     remote_party=remote_party,
-    sender="0208:9999999999",
-    recipient="0208:1111111111",
+    sender="9932:9999999999",
+    recipient="9932:1111111111",
     sender_country_id="GB",
     document_type_identifier_scheme="busdox-docid-qns",
     document_type_identifier_value=(

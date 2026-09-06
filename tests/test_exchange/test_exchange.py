@@ -71,8 +71,8 @@ def without_party_to(body):
 
 def builder_args():
     return PeppolAS4MessageBuilderArgs(
-        sender="0208:2222222222",
-        recipient="0208:3333333333",
+        sender="9932:2222222222",
+        recipient="9932:3333333333",
         document_type_identifier=BusdoxDocidQnsDocumentIdentifier.from_identifier_value(DOCUMENT_TYPE_IDENTIFIER),
         document_identification_instance_identifier="instance-1",
         process_identifier="urn:fdc:peppol.eu:2017:poacc:billing:01:1.0",
@@ -283,14 +283,14 @@ def test_the_envelope_names_access_points_and_the_sbdh_names_participants(local_
     _headers, body = exchange.build(PAYLOAD, builder_args())
 
     assert exchange.message is not None
-    assert exchange.message.sender == "0208:2222222222"
-    assert exchange.message.recipient == "0208:3333333333"
+    assert exchange.message.sender == "9932:2222222222"
+    assert exchange.message.recipient == "9932:3333333333"
 
     envelope = body.split(b"--")[1]
     assert SENDING_AP_ID.encode() in envelope
     assert RECEIVING_AP_ID.encode() in envelope
-    assert b"0208:2222222222" in envelope
-    assert b"0208:3333333333" in envelope
+    assert b"9932:2222222222" in envelope
+    assert b"9932:3333333333" in envelope
 
 
 def test_a_participant_refusal_answers_with_the_code_peppol_mandates(local_party, remote_party, local_receiver):
@@ -337,7 +337,7 @@ def test_refusing_an_unhosted_participant_produces_a_signed_error_signal(local_p
         security_policy=SecurityPolicy(signer_resolver=pinned_certificates(test_sender.certificate)),
     )
 
-    assert checked == ["0208:3333333333"]
+    assert checked == ["9932:3333333333"]
     assert receiving.state is ExchangeState.REJECTED
     assert receiving.message.signer_certificate is not None
     assert receiving.remote_party is not None, "a rejected parse still knows who signed the message"
@@ -362,8 +362,8 @@ def test_a_parsed_message_carries_the_participants_from_its_sbdh(local_party, re
 
     assert receiving.successful, receiving.error
     assert receiving.message is not None
-    assert receiving.message.sender == "0208:2222222222"
-    assert receiving.message.recipient == "0208:3333333333"
+    assert receiving.message.sender == "9932:2222222222"
+    assert receiving.message.recipient == "9932:3333333333"
 
 
 def test_the_envelope_of_a_built_message_can_be_read_as_xml(local_party, remote_party):

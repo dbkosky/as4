@@ -60,8 +60,8 @@ def build_args():
         return PeppolAS4MessageBuilderArgs(
             local_party=local_party,
             remote_party=remote_party,
-            sender="0208:2222222222",
-            recipient="0208:3333333333",
+            sender="9932:2222222222",
+            recipient="9932:3333333333",
             document_type_identifier=BusdoxDocidQnsDocumentIdentifier.from_identifier_value(DOCUMENT_TYPE_IDENTIFIER),
             document_identification_instance_identifier="instance",
             process_identifier="urn:fdc:peppol.eu:2017:poacc:billing:01:1.0",

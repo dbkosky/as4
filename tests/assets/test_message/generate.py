@@ -17,8 +17,8 @@ from as4.profiles.peppol.profile import (
 from as4.utils.mime_handler import MIMEHandler
 from tests.assets.test_credentials import test_receiver, test_sender
 
-SENDING_AP_ID = "0208:9999999999"
-RECEIVING_AP_ID = "0208:1111111111"
+SENDING_AP_ID = "9932:9999999999"
+RECEIVING_AP_ID = "9932:1111111111"
 DOCUMENT_TYPE_IDENTIFIER = (
     "urn:oasis:names:specification:ubl:schema:xsd:Invoice-2::Invoice"
     "##urn:cen.eu:en16931:2017#compliant#urn:fdc:peppol.eu:2017:poacc:billing:3.0::2.1"

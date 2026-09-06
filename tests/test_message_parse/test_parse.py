@@ -50,12 +50,12 @@ DEFAULT_NAMESPACE_MAP = {
 REFERENCED_MESSAGE_ID = "00000000-0000-4000-8000-000000000001@as4"
 
 SUCCESS_SIGNATURE_VALUE = (
-    b"FzMc0sXSN3zPPRZJpWpadzCKtwLoMyXjzvOpAyBGIB0msQkcPzba8fIuvprA"
-    b"ulC/Q5w1lCUJhHLmWHlZZaE94gIShHocq7F8v4W9RDQeAxvKUiZT1KYvxU4m"
-    b"xuVf3Lk/5HdU/Uo6ZPZWv1dQWfHhF/Nz1+Ilrw8XJBK6c26jm3Hp2oxnQ4en"
-    b"NjLt4uTiXGQRO3WZM2VDq4Qhk25XnFEhrHIUvL9bDxXZg8SPN8OIuft9IAie"
-    b"DG64rUvowOetNsrdNhmIm/EU9iKLK/KKZagEJfxO69sa88gjGUa6I40TVYtK"
-    b"bfSC8Dfvv0MQIbxJg3/TEUdQR9BfMM01hOijaW2e5Q=="
+    b"RfezroqhvkyWEnx+/8BuTOiPwRDWE6KoFQq4tfaW0N5dbqQMhO013mxX5NzE"
+    b"BiAaliPCSUR41na217c2rKsF8F/U3yC5eOnjiGOTsL6Su4162DA4UQhfXgSd"
+    b"L1yO1bDx5kqzTudG9PyKMeKxLKllYhGwyQfksHblGYs+wwcNVt8UigoLba+o"
+    b"/HqBRp/f3WzCIC+tzf8dO57I2janaN0FHiV8dlbox8bd6HV2wAco5+3mP3cA"
+    b"CwQNekZ1miYrj5Bs31nlsXxA73Ikow0JnqqtNMEMDgiF5Xbn+plNvqun71NG"
+    b"6/Q9QLvEzRgOwvGN9YR1Bzk1DQtAwV9WCmt1vjlS4Q=="
 )
 
 PYDANTIC_VALIDATION_ERROR_SIGNATURE_VALUE = (
@@ -104,7 +104,7 @@ def example_security_token_reference(test_receipt_references):
 @pytest.fixture
 def example_receiver():
     return AS4InternalParty(
-        identity=AS4PartyIdentity(party_id="0208:1111111111", party_type=const.PEPPOL_PARTY_IDENTIFIER_TYPE),
+        identity=AS4PartyIdentity(party_id="9932:1111111111", party_type=const.PEPPOL_PARTY_IDENTIFIER_TYPE),
         credentials=AS4InternalCredentials(
             certificate=test_receiver.certificate,
             private_key=test_receiver.private_key,
@@ -174,7 +174,7 @@ def test_parse_mime(
                         transforms=[DsigTransform(algorithm="http://www.w3.org/2001/10/xml-exc-c14n#")]
                     ),
                     digest_method=DigestMethod(algorithm="http://www.w3.org/2001/04/xmlenc#sha256"),
-                    digest_value=DigestValue(text="6AzIvpP6Z19xXhCF/eTr/2q8BI/KhKbdpXgUcPUMzLQ="),
+                    digest_value=DigestValue(text="zOAjaoTQ3duUOxv3SNZsnHwYYtLkUo6SFR3Re6Jx6I8="),
                 ),
                 DsigReference(
                     uri=f"#{test_receipt_references.body_id}",
@@ -203,7 +203,7 @@ def test_parse_mime(
                                 transforms=[DsigTransform(algorithm="http://www.w3.org/2001/10/xml-exc-c14n#")]
                             ),
                             digest_method=DigestMethod(algorithm="http://www.w3.org/2001/04/xmlenc#sha256"),
-                            digest_value=DigestValue(text="zOz+HWtlAYLqqhZTAWNpOzjcwoarkKls01mRLzvDCU0="),
+                            digest_value=DigestValue(text="uj2Ry++nML3iJIt/ief4geidT2AFu+7EQhqP4bt2iU0="),
                         )
                     ]
                 ),
@@ -234,7 +234,7 @@ def test_parse_mime(
                                 ]
                             ),
                             digest_method=DigestMethod(algorithm="http://www.w3.org/2001/04/xmlenc#sha256"),
-                            digest_value=DigestValue(text="D8c8mxvbsl+VMliBlkWJ2sFtxERD/pZCx8NZOc38Bzc="),
+                            digest_value=DigestValue(text="VKsT8tj9KhUk9g0XQUTzDKMj+9uCczOclTjbosG51DI="),
                         )
                     ]
                 ),
@@ -482,7 +482,7 @@ def test_addressed_to_is_parsed_from_party_to_not_party_from(
     )
 
     assert message.addressed_to is not None
-    assert message.addressed_to.party_id == "0208:1111111111"
+    assert message.addressed_to.party_id == "9932:1111111111"
 
 
 @freeze_time("2025-12-07")
