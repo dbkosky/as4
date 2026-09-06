@@ -11,6 +11,8 @@ from as4.errors import PayloadPartNotFoundException, SoapPartNotFoundException
 from urllib3.fields import RequestField
 from urllib3.filepost import choose_boundary, encode_multipart_formdata
 
+PROJECT_URL = "https://github.com/dbkosky/as4"
+
 
 class MIMEHandler:
 
@@ -19,9 +21,9 @@ class MIMEHandler:
     @classmethod
     def self_user_agent(cls) -> str:
         try:
-            return f"python-as4/{version('as4')}"
+            return f"as4/{version('as4')} (+{PROJECT_URL})"
         except PackageNotFoundError:
-            return "python-as4"
+            return f"as4 (+{PROJECT_URL})"
 
     @classmethod
     def payload_from_request(
