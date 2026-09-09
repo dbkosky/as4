@@ -12,6 +12,7 @@ from as4.profiles.peppol.profile import (
     parse_peppol_message,
 )
 from tests.assets.test_credentials import test_receiver, test_sender
+from as4.core.common import AS4LocalPrivateKey
 
 SENDING_AP_ID = "PTE000001"
 RECEIVING_AP_ID = "PTE000002"
@@ -25,7 +26,9 @@ DOCUMENT_TYPE_IDENTIFIER = (
 def built_message():
     return build_peppol_message(
         payload=b'<Invoice xmlns="urn:test">payload</Invoice>',
-        local_party=create_peppol_internal_party(SENDING_AP_ID, test_sender.certificate, test_sender.private_key),
+        local_party=create_peppol_internal_party(
+            SENDING_AP_ID, test_sender.certificate, AS4LocalPrivateKey(test_sender.private_key)
+        ),
         remote_party=create_peppol_external_party(RECEIVING_AP_ID, test_receiver.certificate),
         sender="9932:2222222222",
         recipient="9932:3333333333",
@@ -42,7 +45,7 @@ def internal_receiver():
         identity=AS4PartyIdentity(party_id=RECEIVING_AP_ID, party_type=const.PEPPOL_PARTY_IDENTIFIER_TYPE),
         credentials=AS4InternalCredentials(
             certificate=test_receiver.certificate,
-            private_key=test_receiver.private_key,
+            private_key=AS4LocalPrivateKey(test_receiver.private_key),
         ),
     )
 

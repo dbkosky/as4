@@ -7,6 +7,7 @@ from as4.core.common import (
 from as4.core.message import AS4Message
 from as4.core.receipt import AS4Receipt
 from tests.assets.test_credentials import test_receiver
+from as4.core.common import AS4LocalPrivateKey
 
 ENVELOPE = "{http://www.w3.org/2003/05/soap-envelope}Envelope"
 
@@ -19,7 +20,9 @@ def coverage_of(receipt):
 
 LOCAL_PARTY = AS4InternalParty(
     identity=AS4PartyIdentity(party_id="PTE000002", party_type="urn:fdc:peppol.eu:2017:identifiers:ap"),
-    credentials=AS4InternalCredentials(certificate=test_receiver.certificate, private_key=test_receiver.private_key),
+    credentials=AS4InternalCredentials(
+        certificate=test_receiver.certificate, private_key=AS4LocalPrivateKey(test_receiver.private_key)
+    ),
 )
 
 

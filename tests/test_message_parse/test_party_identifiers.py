@@ -11,6 +11,7 @@ from as4.core.context import SecurityPolicy
 from as4.core.trust import pinned_certificates
 from as4.profiles.peppol.profile import build_peppol_message, parse_peppol_message
 from tests.assets.test_credentials import test_receiver, test_sender
+from as4.core.common import AS4LocalPrivateKey
 
 SENDING_AP_ID = "PTE000001"
 RECEIVING_AP_ID = "PTE000002"
@@ -25,7 +26,7 @@ def internal_party(party_type):
         identity=AS4PartyIdentity(party_id=SENDING_AP_ID, party_type=party_type),
         credentials=AS4InternalCredentials(
             certificate=test_sender.certificate,
-            private_key=test_sender.private_key,
+            private_key=AS4LocalPrivateKey(test_sender.private_key),
         ),
     )
 
@@ -60,7 +61,7 @@ def parse(message):
             identity=AS4PartyIdentity(party_id=RECEIVING_AP_ID, party_type=const.PEPPOL_PARTY_IDENTIFIER_TYPE),
             credentials=AS4InternalCredentials(
                 certificate=test_receiver.certificate,
-                private_key=test_receiver.private_key,
+                private_key=AS4LocalPrivateKey(test_receiver.private_key),
             ),
         ),
         security_policy=SecurityPolicy(

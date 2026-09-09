@@ -3,7 +3,9 @@ from as4.core.common import (
     AS4ExternalParty,
     AS4InternalCredentials,
     AS4InternalParty,
+    AS4LocalPrivateKey,
     AS4PartyIdentity,
+    AS4PrivateKey,
 )
 from as4.core.context import AS4ParseContext, SecurityPolicy
 from as4.core.exchange import (
@@ -33,8 +35,10 @@ __all__ = [
     "AS4ExternalParty",
     "AS4InternalCredentials",
     "AS4InternalParty",
+    "AS4LocalPrivateKey",
     "AS4ParseContext",
     "AS4PartyIdentity",
+    "AS4PrivateKey",
     "AS4Profile",
     "AS4ReceivingExchange",
     "AS4References",
