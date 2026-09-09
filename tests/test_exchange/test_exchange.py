@@ -28,6 +28,7 @@ from as4.profiles.peppol.profile import PeppolAS4Profile
 from as4.profiles.peppol.message import PeppolAS4Message, PeppolAS4MessageBuilderArgs
 from as4.profiles.peppol.document_identifier import BusdoxDocidQnsDocumentIdentifier
 from tests.assets.test_credentials import test_receiver, test_sender
+from as4.core.common import AS4LocalPrivateKey
 
 SENDING_AP_ID = "PTE000001"
 RECEIVING_AP_ID = "PTE000002"
@@ -42,7 +43,9 @@ DOCUMENT_TYPE_IDENTIFIER = (
 def local_party():
     return AS4InternalParty(
         identity=AS4PartyIdentity(party_id=SENDING_AP_ID, party_type=const.PEPPOL_PARTY_IDENTIFIER_TYPE),
-        credentials=AS4InternalCredentials(certificate=test_sender.certificate, private_key=test_sender.private_key),
+        credentials=AS4InternalCredentials(
+            certificate=test_sender.certificate, private_key=AS4LocalPrivateKey(test_sender.private_key)
+        ),
     )
 
 
@@ -60,7 +63,7 @@ def local_receiver():
         identity=AS4PartyIdentity(party_id=RECEIVING_AP_ID, party_type=const.PEPPOL_PARTY_IDENTIFIER_TYPE),
         credentials=AS4InternalCredentials(
             certificate=test_receiver.certificate,
-            private_key=test_receiver.private_key,
+            private_key=AS4LocalPrivateKey(test_receiver.private_key),
         ),
     )
 

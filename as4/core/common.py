@@ -1,7 +1,10 @@
+from abc import ABC, abstractmethod
 from typing import Self
 
-from cryptography.hazmat.primitives.asymmetric import rsa
-from cryptography.hazmat.primitives.asymmetric.rsa import RSAPublicKey
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.asymmetric.padding import AsymmetricPadding
+from cryptography.hazmat.primitives.asymmetric.rsa import RSAPrivateKey, RSAPublicKey
+from cryptography.hazmat.primitives.asymmetric.utils import Prehashed
 from lxml import etree
 from as4.core.serialisation import SerialisableCertificate
 from as4.errors import DuplicateElementIdException
@@ -44,6 +47,37 @@ class AS4PartyIdentity(BaseModel):
         )
 
 
+class AS4PrivateKey(ABC):
+
+    @abstractmethod
+    def sign(
+        self,
+        data: bytes,
+        padding: AsymmetricPadding,
+        algorithm: Prehashed | hashes.HashAlgorithm,
+    ) -> bytes: ...
+
+    @abstractmethod
+    def decrypt(self, ciphertext: bytes, padding: AsymmetricPadding) -> bytes: ...
+
+
+class AS4LocalPrivateKey(AS4PrivateKey):
+
+    def __init__(self, private_key: RSAPrivateKey) -> None:
+        self.private_key = private_key
+
+    def sign(
+        self,
+        data: bytes,
+        padding: AsymmetricPadding,
+        algorithm: Prehashed | hashes.HashAlgorithm,
+    ) -> bytes:
+        return self.private_key.sign(data, padding, algorithm)
+
+    def decrypt(self, ciphertext: bytes, padding: AsymmetricPadding) -> bytes:
+        return self.private_key.decrypt(ciphertext, padding)
+
+
 class AS4BaseCredentials(BaseModel):
     model_config = ConfigDict(arbitrary_types_allowed=True)
     certificate: SerialisableCertificate
@@ -56,7 +90,7 @@ class AS4BaseCredentials(BaseModel):
 
 
 class AS4InternalCredentials(AS4BaseCredentials):
-    private_key: rsa.RSAPrivateKey
+    private_key: AS4PrivateKey
 
 
 class AS4InternalParty(BaseModel):

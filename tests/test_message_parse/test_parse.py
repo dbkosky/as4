@@ -34,6 +34,7 @@ from as4.models.wsse.security_token_reference import SecurityTokenReference
 from as4.utils.mime_handler import MIMEHandler
 from tests.assets.test_credentials import test_receiver, test_sender
 from tests.assets.test_message import test_as4_mime
+from as4.core.common import AS4LocalPrivateKey
 
 LONDON_TIMEZONE = ZoneInfo(key="Europe/London")
 TIMEZONE = LONDON_TIMEZONE
@@ -107,7 +108,7 @@ def example_receiver():
         identity=AS4PartyIdentity(party_id="9932:1111111111", party_type=const.PEPPOL_PARTY_IDENTIFIER_TYPE),
         credentials=AS4InternalCredentials(
             certificate=test_receiver.certificate,
-            private_key=test_receiver.private_key,
+            private_key=AS4LocalPrivateKey(test_receiver.private_key),
         ),
     )
 

@@ -4,13 +4,14 @@ from uuid import uuid4
 from cryptography import x509
 from cryptography.x509.oid import NameOID
 from as4 import const
-from cryptography.hazmat.primitives.asymmetric import rsa
+
 from as4.core.common import (
     AS4BaseCredentials,
     AS4ExternalParty,
     AS4InternalCredentials,
     AS4InternalParty,
     AS4PartyIdentity,
+    AS4PrivateKey,
 )
 from as4.core.context import ParticipantAcceptor, SecurityPolicy, SignerResolver
 from as4.errors import PayloadPartNotFoundException, SoapPartNotFoundException
@@ -133,7 +134,7 @@ class PeppolAS4Profile(AS4Profile[PeppolAS4Message, PeppolAS4Receipt, PeppolAS4M
 def create_peppol_internal_party(
     party_id: str,
     certificate: x509.Certificate,
-    private_key: rsa.RSAPrivateKey,
+    private_key: AS4PrivateKey,
 ) -> AS4InternalParty:
     return AS4InternalParty(
         identity=AS4PartyIdentity(party_id=party_id, party_type=const.PEPPOL_PARTY_IDENTIFIER_TYPE),

@@ -8,6 +8,7 @@ from as4.core.common import AS4PartyIdentity
 from as4.core.receipt import AS4Receipt
 from as4.profiles.peppol.profile import build_peppol_message
 from tests.assets.test_credentials import test_receiver, test_sender
+from as4.core.common import AS4LocalPrivateKey
 
 NAMESPACES = {
     "eb3": "http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/",
@@ -15,7 +16,9 @@ NAMESPACES = {
 }
 LOCAL_PARTY = AS4InternalParty(
     identity=AS4PartyIdentity(party_id="PTE000001", party_type="urn:fdc:peppol.eu:2017:identifiers:ap"),
-    credentials=AS4InternalCredentials(certificate=test_sender.certificate, private_key=test_sender.private_key),
+    credentials=AS4InternalCredentials(
+        certificate=test_sender.certificate, private_key=AS4LocalPrivateKey(test_sender.private_key)
+    ),
 )
 REMOTE_PARTY = AS4ExternalParty(
     identity=AS4PartyIdentity(party_id="PTE000002", party_type="urn:fdc:peppol.eu:2017:identifiers:ap"),

@@ -5,6 +5,7 @@ from as4.core.common import AS4BaseCredentials, AS4ExternalParty, AS4InternalCre
 from as4.core.common import AS4PartyIdentity
 from as4.profiles.peppol.profile import build_peppol_message
 from tests.assets.test_credentials import test_receiver, test_sender
+from as4.core.common import AS4LocalPrivateKey
 
 NAMESPACES = {"eb3": "http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/"}
 DOCUMENT_TYPE_IDENTIFIER = (
@@ -19,7 +20,7 @@ def build(**overrides):
         local_party=AS4InternalParty(
             identity=AS4PartyIdentity(party_id="PTE000001", party_type="urn:fdc:peppol.eu:2017:identifiers:ap"),
             credentials=AS4InternalCredentials(
-                certificate=test_sender.certificate, private_key=test_sender.private_key
+                certificate=test_sender.certificate, private_key=AS4LocalPrivateKey(test_sender.private_key)
             ),
         ),
         remote_party=AS4ExternalParty(

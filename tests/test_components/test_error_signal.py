@@ -5,11 +5,14 @@ from lxml import etree
 from as4.core.common import AS4InternalCredentials, AS4InternalParty, AS4PartyIdentity
 from as4.core.receipt import AS4Receipt
 from tests.assets.test_credentials import test_receiver
+from as4.core.common import AS4LocalPrivateKey
 
 NAMESPACES = {"eb3": "http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/"}
 LOCAL_PARTY = AS4InternalParty(
     identity=AS4PartyIdentity(party_id="PTE000002", party_type="urn:fdc:peppol.eu:2017:identifiers:ap"),
-    credentials=AS4InternalCredentials(certificate=test_receiver.certificate, private_key=test_receiver.private_key),
+    credentials=AS4InternalCredentials(
+        certificate=test_receiver.certificate, private_key=AS4LocalPrivateKey(test_receiver.private_key)
+    ),
 )
 
 
