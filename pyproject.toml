@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "as4"
-version = "0.1.1"
+version = "0.2.0"
 description = "Build, parse and answer AS4 messages, with the Peppol AS4 profile built in"
 readme = "README.md"
 requires-python = ">=3.11"
