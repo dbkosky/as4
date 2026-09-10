@@ -1,0 +1,33 @@
+name: Publish
+
+on:
+  push:
+    tags: [ "v*" ]
+
+jobs:
+  publish:
+
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.13"
+    - name: Build
+      run: pipx run build
+    - name: Check the built version matches the tag
+      run: |
+        expected="dist/as4-${GITHUB_REF_NAME#v}.tar.gz"
+        if [ ! -f "$expected" ]; then
+          echo "Expected $expected, so the version in pyproject.toml does not match tag $GITHUB_REF_NAME"
+          ls dist
+          exit 1
+        fi
+    - name: Publish to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
