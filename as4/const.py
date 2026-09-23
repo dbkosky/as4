@@ -24,3 +24,8 @@ ENCRYPTED_KEY_TOKEN_TYPE = "http://docs.oasis-open.org/wss/oasis-wss-soap-messag
 ATTACHMENT_CIPHERTEXT_TRANSFORM = (
     "http://docs.oasis-open.org/wss/oasis-wss-SwAProfile-1.1#Attachment-Ciphertext-Transform"
 )
+MEP_ONE_WAY = "http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/oneWay"
+MEP_TWO_WAY = "http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/twoWay"
+MEP_BINDING_PUSH = "http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/push"
+MEP_BINDING_PULL = "http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/pull"
+DEFAULT_MPC = "http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/defaultMPC"
